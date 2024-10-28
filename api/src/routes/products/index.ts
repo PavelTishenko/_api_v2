@@ -1,21 +1,13 @@
 import { Router } from 'express';
 
+import { getProductsList, getProductById, createProduct, updateProduct, deleteProduct } from './productsController';
+
 const router = Router();
 
-router.get('/', (req, res) => {
-  res.send('List of products');
-})
-
-router.get('/:id', (req, res) => {
-  const productId = req.params.id;
-  console.log('productId:', productId)
-  res.send(`Product ID: ${productId}`);
-});
-
-router.post('/', (req, res) => {
-  const newProduct = req.body;
-  // Here you would typically add the new product to your database
-  res.status(201).send(`Product created: ${JSON.stringify(newProduct)}`);
-});
+router.get('/', getProductsList)
+router.get('/:id', getProductById);
+router.post('/', createProduct);
+router.put('/:id', updateProduct);
+router.delete('/:id', deleteProduct);
 
 export default router;
